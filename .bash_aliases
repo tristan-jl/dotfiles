@@ -1,16 +1,9 @@
 # Aliases
-alias python='python3'
-alias mvnfull='mvn clean install surefire-report:report site -DgenerateReports=false scala:doc scoverage:report'
-alias gitbpurge='git branch --merged | grep -v "(^\*|master|dev|release)" | xargs git branch -d'
+alias vim='nvim'
+alias vi='nvim'
 
-# Custom functions
-gitf() {
-    git add .
-    git commit -m "$*"
-    git push
-}
+alias grep='grep --line-buffered'
+  
+alias gs='git status'
 
-gitc() {
-    git checkout "$*"
-    git pull
-}
+alias okta-login='okta-cli -p astellas p000358-astellas-g2n'

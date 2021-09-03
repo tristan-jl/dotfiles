@@ -53,9 +53,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -119,11 +119,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH=$PATH:/opt/maven/bin/
-export PATH=$PATH:/home/tristan/anaconda3/bin
-source activate
-export JAVA_HOME='/opt/jdk1.8.0_201'
-export PYTHONPATH='/home/tristan/anaconda3/bin/python3'
-export PYSPARK_PYTHON='/home/tristan/anaconda3/bin/python3'
-export HADOOP_CONF_DIR='/usr/lib/spark/conf'
-export PATH=$PATH:/usr/lib/spark/bin:/home/tristan/anaconda3/bin
+
+. "$HOME/.cargo/env"
+
+# Folder colourings
+export CLICOLOR=1
+
+# Set virtualenv default python version - doesn't work properly
+# export VIRTUALENV_PYTHON='/Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9'
+
+# terraform autocomplete
+complete -C /usr/local/bin/terraform terraform
+
