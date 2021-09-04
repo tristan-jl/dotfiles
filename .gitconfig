@@ -1,0 +1,11 @@
+[user]
+	name = Tristan Laurens
+	email = tristanlaurens@hotmail.com
+[fetch]
+	prune = true
+[core]
+	editor = vim
+	excludesfile = /Users/tlaurens/.gitignore
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr) %C(yellow)%d%Creset'
+	amend = commit --amend --no-edit

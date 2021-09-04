@@ -1,0 +1,161 @@
+{
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.updateChannel": "Insiders",
+    "[cpp]": {},
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        },
+        "editor.tabSize": 2,
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescript]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        }
+    },
+    "debug.allowBreakpointsEverywhere": true,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.maxColumn": 200,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.showSlider": "always",
+    "editor.smoothScrolling": true,
+    "editor.suggestSelection": "first",
+    "editor.rulers": [
+        88
+    ],
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.git": false
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.formatting.autopep8Path": "C:\\Users\\tlaurens\\AppData\\Roaming\\Python\\Python39\\Scripts\\autopep8.exe",
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "C:\\Users\\tlaurens\\AppData\\Roaming\\Python\\Python39\\Scripts\\flake8.exe",
+    "python.sortImports.args": [
+        "--sl"
+    ],
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.colorTheme": "Night Owl",
+    "workbench.editor.enablePreview": false,
+    "workbench.editorAssociations": {
+        "*.csv": "default",
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "azureFunctions.pythonVenv": "venv",
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "C:\\Users\\tlaurens\\Documents\\coding\\dotfiles\\.vimrc",
+    "azure.resourceFilter": [
+        "5cb01ea2-4160-4f87-afc6-5e72e6b82ad1/360024f5-4ea8-4e01-818b-74246c32090a",
+        "36da45f1-dd2c-4d1f-af13-5abe46b99921/b56a0306-56d9-4422-84c0-bf74436641e6"
+    ],
+    "jupyter.askForKernelRestart": false,
+    "azureFunctions.showCoreToolsWarning": false,
+    "workbench.editor.tabSizing": "shrink",
+    "python.showStartPage": false,
+    "cloudcode.enableTelemetry": false,
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+    "editor.fontSize": 13,
+    "[dockerfile]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        }
+    },
+    "docker.languageserver.formatter.ignoreMultilineInstructions": true,
+    "explorer.confirmDelete": false,
+    "debug.openDebug": "openOnDebugBreak",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
+    },
+    "redhat.telemetry.enabled": false,
+    "dart.allowAnalytics": false,
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "aws.telemetry": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "yaml.schemas": {
+        "file:/Users/tlaurens/Library/Application Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/sam.schema.json": [
+            "template.yaml"
+        ],
+        "file:///Users/tlaurens/Library/Application%20Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/sam.schema.json": [
+            "template.yaml"
+        ]
+    },
+    "aws.samcli.location": "/usr/local/bin/sam",
+    "aws.sam.enableCodeLenses": false,
+    "[asl]": {
+        "editor.defaultFormatter": "amazonwebservices.aws-toolkit-vscode"
+    },
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "window.zoomLevel": 1
+}
