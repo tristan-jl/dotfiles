@@ -68,6 +68,8 @@ vim.cmd [[colorscheme onedark]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+vim.g.python3_host_prog = '/Users/tlaurens/opt/venv/bin/python'
+
 --Set statusbar
 require('lualine').setup {
   options = {
@@ -225,13 +227,15 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'rust_analyzer', 'tsserver' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+lspconfig.pyright.setup{cmd = {"/Users/tlaurens/opt/venv/bin/pyright-langserver", "--stdio"}, on_attach = on_attach, capabilities = capabilities}
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
