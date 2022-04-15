@@ -25,6 +25,7 @@ require('packer').startup(function(use)
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 	-- Add indentation guides even on blank lines
 	use 'lukas-reineke/indent-blankline.nvim'
+	use 'max397574/better-escape.nvim'
 	-- Add git related info in the signs columns and popups
 	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 	-- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -38,7 +39,8 @@ require('packer').startup(function(use)
 	use 'hrsh7th/cmp-nvim-lua'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'saadparwaiz1/cmp_luasnip'
-	use 'L3MON4D3/LuaSnip' -- Snippets plugin
+	use 'L3MON4D3/LuaSnip'
+	use 'onsails/lspkind-nvim'
 	use {
 		"prettier/vim-prettier",
 		ft = { "html", "javascript", "typescript", "typescriptreact" },
@@ -96,6 +98,12 @@ require('Comment').setup()
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+--Escape mapping setup
+require("better_escape").setup {
+	mapping = { "jk" },
+	keys = "<Esc>",
+}
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -299,35 +307,54 @@ lspconfig.sumneko_lua.setup {
 -- luasnip setup
 local luasnip = require 'luasnip'
 
+-- lspkind setup
+local lspkind = require 'lspkind'
+lspkind.init()
+
 -- nvim-cmp setup
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 local cmp = require 'cmp'
 cmp.setup {
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
 	mapping = {
-		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping(
+			cmp.mapping.confirm {
+				behaviour = cmp.ConfirmBehavior.Insert,
+				select = true,
+			},
+			{ "i", "c" }
+		),
+
+		["<c-space>"] = cmp.mapping {
+			i = cmp.mapping.complete(),
+			c = function(_)
+				if cmp.visible() then
+					if not cmp.confirm { select = true } then
+						return
+					end
+				else
+					cmp.complete()
+				end
+			end,
 		},
-		['<Tab>'] = function(fallback)
+		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
 			else
 				fallback()
 			end
-		end,
-		['<S-Tab>'] = function(fallback)
+		end, { "i", "s" }),
+
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -335,11 +362,58 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end,
+		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
+		{ name = "nvim_lua" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer", keyword_length = 5 },
+	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+
+			function(entry1, entry2)
+				local _, entry1_under = entry1.completion_item.label:find "^_+"
+				local _, entry2_under = entry2.completion_item.label:find "^_+"
+				entry1_under = entry1_under or 0
+				entry2_under = entry2_under or 0
+				if entry1_under > entry2_under then
+					return false
+				elseif entry1_under < entry2_under then
+					return true
+				end
+			end,
+
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+	},
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	formatting = {
+		format = lspkind.cmp_format {
+			with_text = true,
+			menu = {
+				buffer = "[buf]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[api]",
+				path = "[path]",
+				luasnip = "[snip]",
+			},
+		}
+	},
+	experimental = {
+		native_menu = false,
+		ghost_text = false,
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et
