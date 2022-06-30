@@ -128,9 +128,15 @@ export DEBEMAIL="tristanlaurens@hotmail.com" DEBFULLNAME="Tristan Laurens"
 # terraform autocomplete
 complete -C /usr/local/bin/terraform terraform
 
+# alacritty autocomplete
+source $HOME/opt/alacritty/extra/completions/alacritty.bash
+
+
 if [ -d ~/.bashrc.d ]; then
     for f in ~/.bashrc.d/*.sh; do
         . "$f"
     done
     unset f
 fi
+
+export PATH="${PATH}:${HOME}/.cargo/bin"
