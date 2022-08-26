@@ -140,3 +140,4 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 export PATH="${PATH}:${HOME}/.cargo/bin"
+export PATH="${PATH}:/usr/local/go/bin"
