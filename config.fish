@@ -22,8 +22,12 @@ if command -v exa > /dev/null
 	abbr -a ll 'exa -lah'
 else
 	abbr -a l 'ls'
-	abbr -a ll 'ls -l'
-	abbr -a lll 'ls -la'
+	abbr -a la 'ls -a'
+	abbr -a ll 'ls -la'
+end
+
+if command -v bat > /dev/null
+	abbr -a cat 'bat'
 end
 
 if test -f /usr/share/autojump/autojump.fish;
