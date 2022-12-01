@@ -10,9 +10,6 @@ if status --is-interactive
 		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
 		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
 	end
-	if ! set -q TMUX
-		exec tmux
-	end
 end
 
 if command -v exa > /dev/null
@@ -24,6 +21,10 @@ else
 	abbr -a l 'ls'
 	abbr -a la 'ls -a'
 	abbr -a ll 'ls -la'
+end
+
+if command -v rg > /dev/null
+    abbr -a grep 'rg --line-buffered'
 end
 
 if command -v bat > /dev/null
@@ -80,11 +81,12 @@ setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 
 function fish_user_key_bindings
-	bind \cz 'fg>/dev/null ^/dev/null'
-	if functions -q fzf_key_bindings
-		fzf_key_bindings
-	end
+    bind \cz 'fg>/dev/null ^/dev/null'
+    if functions -q fzf_key_bindings
+       fzf_key_bindings
+    end
 end
+
 
 function fish_prompt
 	set_color brblack
