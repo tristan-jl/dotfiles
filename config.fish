@@ -54,11 +54,6 @@ function bind_dollar
     end
 end
 
-function fish_user_key_bindings
-    bind ! bind_bang
-    bind '$' bind_dollar
-end
-
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
@@ -81,12 +76,14 @@ setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 
 function fish_user_key_bindings
+    bind ! bind_bang
+    bind '$' bind_dollar
+
     bind \cz 'fg>/dev/null ^/dev/null'
     if functions -q fzf_key_bindings
        fzf_key_bindings
     end
 end
-
 
 function fish_prompt
 	set_color brblack
