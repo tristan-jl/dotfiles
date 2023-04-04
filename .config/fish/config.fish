@@ -31,6 +31,10 @@ if command -v bat > /dev/null
 	abbr -a cat 'bat'
 end
 
+if command -v et > /dev/null
+	abbr -a tree 'et -I'
+end
+
 if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
