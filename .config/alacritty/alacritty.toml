@@ -38,7 +38,7 @@ history = 0
 [window]
 decorations = "none"
 dynamic_title = true
-startup_mode = "Maximized"
+startup_mode = "Windowed"
 title = "Alacritty"
 
 [window.padding]

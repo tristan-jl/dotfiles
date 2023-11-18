@@ -1,6 +1,3 @@
-[user]
-	name = Tristan Laurens
-	email = tristanlaurens@hotmail.com
 [fetch]
 	prune = true
 [core]
@@ -9,3 +6,15 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset - %C(bold blue)%an%Creset - %s %Cgreen(%cr) %C(yellow)%d%Creset'
 	amend = commit --amend --no-edit
+
+[includeIf "gitdir:~/workspace/coding/"]
+path = ~/.gitconfig-personal
+[includeIf "gitdir:~/workspace/extra/"]
+path = ~/.gitconfig-work
+[includeIf "gitdir:~/workspace/project/"]
+path = ~/.gitconfig-work
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
