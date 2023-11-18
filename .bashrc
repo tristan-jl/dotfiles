@@ -129,7 +129,7 @@ export DEBEMAIL="tristanlaurens@hotmail.com" DEBFULLNAME="Tristan Laurens"
 complete -C /usr/local/bin/terraform terraform
 
 # alacritty autocomplete
-source $HOME/opt/alacritty/extra/completions/alacritty.bash
+# source $HOME/opt/alacritty/extra/completions/alacritty.bash
 
 
 if [ -d ~/.bashrc.d ]; then
@@ -139,9 +139,9 @@ if [ -d ~/.bashrc.d ]; then
     unset f
 fi
 
-export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:/usr/local/go/bin"
 export PATH="${PATH}:~/.local/.npm-global/bin"
+export PATH="${PATH}:${HOME}/.cargo/bin"
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"
