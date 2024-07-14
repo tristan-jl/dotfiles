@@ -1,4 +1,4 @@
-import = ["/home/tristan/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
+import = ["/home/tristan/.config/alacritty/tokyonight/tokyonight_moon.toml"]
 
 [env]
 TERM = "xterm-256color"
