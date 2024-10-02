@@ -12,11 +12,11 @@ if status --is-interactive
 	end
 end
 
-if command -v exa > /dev/null
-	abbr -a l 'exa'
-	abbr -a ls 'exa --color=auto'
-	abbr -a la 'exa -a'
-	abbr -a ll 'exa -lah'
+if command -v eza > /dev/null
+	abbr -a l 'eza'
+	abbr -a ls 'eza --color=auto'
+	abbr -a la 'eza -a'
+	abbr -a ll 'eza -lah'
 else
 	abbr -a l 'ls'
 	abbr -a la 'ls -a'
