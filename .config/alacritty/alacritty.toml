@@ -1,10 +1,10 @@
-import = ["/home/tristan/.config/alacritty/tokyonight/tokyonight_moon.toml"]
+import = ["/home/tristan/.config/alacritty/gruber-darker.toml"]
 
 [env]
 TERM = "xterm-256color"
 
 [font]
-size = 16.0
+size = 18.0
 
 [font.bold]
 family = "Iosevka Nerd Font"
@@ -20,7 +20,7 @@ style = "Italic"
 
 [font.normal]
 family = "Iosevka Nerd Font"
-style = "Regular"
+style = "Bold"
 
 [[keyboard.bindings]]
 action = "Paste"
