@@ -28,7 +28,7 @@ if command -v rg > /dev/null
 end
 
 if command -v bat > /dev/null
-	abbr -a cat 'bat'
+	abbr -a cat 'bat -p'
 end
 
 if command -v et > /dev/null
@@ -122,75 +122,7 @@ function fish_greeting
 	)
 	echo
 
-	echo -e " \\e[1mNetwork:\\e[0m"
-	echo
-	# http://tdt.rocks/linux_network_interface_naming.html
-	echo -ne (\
-		ip addr show up scope global | \
-			grep -E ': <|inet' | \
-			sed \
-				-e 's/^[[:digit:]]\+: //' \
-				-e 's/: <.*//' \
-				-e 's/.*inet[[:digit:]]* //' \
-				-e 's/\/.*//'| \
-			awk 'BEGIN {i=""} /\.|:/ {print i" "$0"\\\n"; next} // {i = $0}' | \
-			sort | \
-			column -t -R1 | \
-			# public addresses are underlined for visibility \
-			sed 's/ \([^ ]\+\)$/ \\\e[4m\1/' | \
-			# private addresses are not \
-			sed 's/m\(\(10\.\|172\.\(1[6-9]\|2[0-9]\|3[01]\)\|192\.168\.\).*\)/m\\\e[24m\1/' | \
-			# unknown interfaces are cyan \
-			sed 's/^\( *[^ ]\+\)/\\\e[36m\1/' | \
-			# ethernet interfaces are normal \
-			sed 's/\(\(en\|em\|eth\)[^ ]* .*\)/\\\e[39m\1/' | \
-			# wireless interfaces are purple \
-			sed 's/\(wl[^ ]* .*\)/\\\e[35m\1/' | \
-			# wwan interfaces are yellow \
-			sed 's/\(ww[^ ]* .*\).*/\\\e[33m\1/' | \
-			sed 's/$/\\\e[0m/' | \
-			sed 's/^/\t/' \
-		)
-	echo
+source /Users/tlaurens/.docker/init-fish.sh || true # Added by Docker Desktop
 
-	set r (random 0 100)
-	if [ $r -lt 5 ] # only occasionally show backlog (5%)
-		echo -e " \e[1mBacklog\e[0;32m"
-		set_color blue
-		echo "  [project] <description>"
-		echo
-	end
-
-	set_color normal
-	echo -e " \e[1mTODOs\e[0;32m"
-	echo
-	if [ $r -lt 10 ]
-		# unimportant, so show rarely
-		set_color cyan
-		# echo "  [project] <description>"
-	end
-	if [ $r -lt 25 ]
-		# back-of-my-mind, so show occasionally
-		set_color green
-		# echo "  [project] <description>"
-	end
-	if [ $r -lt 50 ]
-		# upcoming, so prompt regularly
-		set_color yellow
-		# echo "  [project] <description>"
-	end
-
-	# urgent, so prompt always
-	set_color red
-	# echo "  [project] <description>"
-
-	echo
-
-	if test -s ~/todo
-		set_color magenta
-		cat todo | sed 's/^/ /'
-		echo
-	end
-
-	set_color normal
-end
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tlaurens/opt/google-cloud-sdk/path.fish.inc' ]; . '/Users/tlaurens/opt/google-cloud-sdk/path.fish.inc'; end
