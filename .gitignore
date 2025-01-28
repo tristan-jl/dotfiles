@@ -1,2 +1,3 @@
 .tmux/plugins/
 !.tmux/plugins/tpm
+.config/fish/fish_variables
