@@ -90,13 +90,37 @@ return {
               },
               cargo = {
                 loadOutDirsFromCheck = true,
-                features = "all",
+                allFeatures = true,
+                buildScripts = {
+                  enable = true,
+                },
               },
               procMacro = {
                 enable = true,
               },
-              checkOnSave = {
+              check = {
+                allFeatures = true,
                 command = "clippy",
+                extraArgs = {
+                  "--",
+                  "--no-deps",
+                  "-Dclippy::correctness",
+                  "-Dclippy::complexity",
+                  "-Wclippy::perf",
+                  "-Wclippy::pedantic",
+                },
+              },
+              checkOnSave = {
+                allFeatures = true,
+                command = "clippy",
+                extraArgs = {
+                  "--",
+                  "--no-deps",
+                  "-Dclippy::correctness",
+                  "-Dclippy::complexity",
+                  "-Wclippy::perf",
+                  "-Wclippy::pedantic",
+                },
               },
             },
           },
