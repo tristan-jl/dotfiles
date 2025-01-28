@@ -110,5 +110,3 @@ end
 function fish_greeting
     neofetch
 end
-
-source /Users/tlaurens/.docker/init-fish.sh || true # Added by Docker Desktop
