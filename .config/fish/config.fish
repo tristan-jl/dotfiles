@@ -4,7 +4,6 @@ abbr -a vim nvim
 abbr -a gs 'git status'
 abbr -a gc 'git checkout'
 abbr -a vimdiff 'nvim -d'
-abbr -a ibrew 'arch --x86_64 /usr/local/Homebrew/bin/brew'
 
 if status --is-interactive
 	if test -d ~/dev/others/base16/templates/fish-shell
